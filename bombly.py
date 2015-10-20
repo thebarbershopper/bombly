@@ -20,7 +20,7 @@ vowel = 'vowel'
 
 # Maxes
 mazes = {
-(('1','2'), ('6','3')): """
+    (('1', '2'), ('6', '3')): """
 x x x|x x x
   -     - -
 x|x x|x x x
@@ -33,7 +33,7 @@ x x x|x x|x
   -     -  
 x x|x x|x x
 """,
-(('5','2'), ('2','4')): """
+    (('5', '2'), ('2', '4')): """
 x x x|x x x
 -   -     -
 x x|x x|x x
@@ -46,7 +46,7 @@ x|x|x|x x|x
         -  
 x|x x|x x x
 """,
-(('4','4'), ('6','4')): """
+    (('4', '4'), ('6', '4')): """
 x x x|x|x x
   -        
 x|x|x|x x|x
@@ -59,7 +59,7 @@ x|x x|x|x|x
   - -      
 x x x x|x x
 """,
-(('1','1'), ('1','4')): """
+    (('1', '1'), ('1', '4')): """
 x x|x x x x
     - - -  
 x|x|x x x x
@@ -72,7 +72,7 @@ x x x x x|x
   - - -    
 x x x|x x|x
 """,
-(('5','3'), ('4','6')): """
+    (('5', '3'), ('4', '6')): """
 x x x x x x
 - - - -    
 x x x x x|x
@@ -85,7 +85,7 @@ x|x x x x|x
     - - -  
 x|x x x x x
 """,
-(('5','1'), ('3','5')): """
+    (('5', '1'), ('3', '5')): """
 x|x x|x x x
       -    
 x|x|x|x x|x
@@ -98,7 +98,7 @@ x x|x|x|x x
   - -   -  
 x x x x|x x
 """,
-(('2','1'), ('2','6')): """
+    (('2', '1'), ('2', '6')): """
 x x x x|x x
   - -      
 x|x x|x x|x
@@ -111,7 +111,7 @@ x|x|x x x|x
   - - -    
 x x x x x x
 """,
-(('4','1'), ('3','4')): """
+    (('4', '1'), ('3', '4')): """
 x|x x x|x x
     -      
 x x x|x x|x
@@ -124,7 +124,7 @@ x|x|x x x x
     - - - -
 x x x x x x
 """,
-(('3','2'), ('1','5')): """
+    (('3', '2'), ('1', '5')): """
 x|x x x x x
     - -    
 x|x|x x|x x
@@ -152,7 +152,7 @@ sequences['red'] = [
     ('a', 'b', 'c'),
     ('a', 'b'),
     ('b')
-    ]
+]
 sequences['blue'] = [
     ('b'),
     ('a', 'c'),
@@ -163,7 +163,7 @@ sequences['blue'] = [
     ('c'),
     ('a', 'c'),
     ('a')
-    ]
+]
 sequences['black'] = [
     ('a', 'b', 'c'),
     ('a', 'c'),
@@ -174,7 +174,7 @@ sequences['black'] = [
     ('a', 'b'),
     ('c'),
     ('c')
-    ]
+]
 
 # Memory
 values = []
@@ -190,6 +190,7 @@ on_first_words = []
 # Password
 curr_password = []
 
+
 def get_maze_dict(maze):
     maze_dict = defaultdict(list)
     maze = maze[1:]
@@ -198,30 +199,31 @@ def get_maze_dict(maze):
     for row_index, line in enumerate(maze):
         for col_index, item in enumerate(line):
             if item == 'x':
-                col = col_index/2+1
-                row = row_index/2+1
+                col = col_index / 2 + 1
+                row = row_index / 2 + 1
                 try:
-                    if maze[row_index+1][col_index] == ' ':
-                        maze_dict[(col, row)].append(('D', (col, row+1)))
+                    if maze[row_index + 1][col_index] == ' ':
+                        maze_dict[(col, row)].append(('D', (col, row + 1)))
                 except:
                     pass
                 try:
-                    if maze[row_index-1][col_index] == ' ':
-                        maze_dict[(col, row)].append(('U', (col, row-1)))
+                    if maze[row_index - 1][col_index] == ' ':
+                        maze_dict[(col, row)].append(('U', (col, row - 1)))
                 except:
                     pass
                 try:
-                    if maze[row_index][col_index+1] == ' ':
-                        maze_dict[(col, row)].append(('R', (col+1, row)))
+                    if maze[row_index][col_index + 1] == ' ':
+                        maze_dict[(col, row)].append(('R', (col + 1, row)))
                 except:
                     pass
                 try:
-                    if maze[row_index][col_index-1] == ' ':
-                        maze_dict[(col, row)].append(('L', (col-1, row)))
+                    if maze[row_index][col_index - 1] == ' ':
+                        maze_dict[(col, row)].append(('L', (col - 1, row)))
                 except:
                     pass
 
     return maze_dict
+
 
 def easy_answer(answer):
     count = 0
@@ -240,7 +242,7 @@ def easy_answer(answer):
     curr_answer += curr_letter + str(count)
 
     return curr_answer
-    
+
 
 def traverse_maze(maze_dict, start, finish):
     path = [[('x', start)]]
@@ -258,18 +260,22 @@ def traverse_maze(maze_dict, start, finish):
                 else:
                     path.append(temp_path + [new_path])
 
+
 def get_maze(indicator):
-    for indicators,maze in mazes.iteritems():
+    for indicators, maze in mazes.iteritems():
         if indicator in indicators:
             return maze
 
     return ''
 
+
 def odd_serial():
     return serial in ('one', 'three', 'five', 'seven', 'nine')
 
+
 def even_serial():
     return serial in ('zero', 'two', 'four', 'six', 'eight')
+
 
 def sanitize_colors(words):
     print "Sanitizing: {}".format(words)
@@ -278,16 +284,19 @@ def sanitize_colors(words):
     print "Sanitized: {}".format(words)
     return words
 
+
 class SampleRule(CompoundRule):
-    spec = "simple wires <wires>"                  # Spoken form of command.
+    spec = "simple wires <wires>"  # Spoken form of command.
     extras = [Dictation("wires")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         wire = str(extras['wires'])
+
 
 class BombResetRule(CompoundRule):
     spec = "bomb reset"
 
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global batteries
         global freak
         global car
@@ -310,7 +319,7 @@ class BombResetRule(CompoundRule):
         vowel = 'vowel'
 
         # Wire sequence
-        counts = defaultdict(int) 
+        counts = defaultdict(int)
 
         # Memory
         values = []
@@ -323,10 +332,11 @@ class BombResetRule(CompoundRule):
         # On First Words
         on_first_words = []
 
+
 class BombStatusRule(CompoundRule):
     spec = "bomb status"
 
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global batteries
         global freak
         global car
@@ -362,65 +372,67 @@ class BombStatusRule(CompoundRule):
         # On First Words
         print 'on first words', on_first_words
 
+
 class BombCarRule(CompoundRule):
     spec = "car <car>"
     extras = [IntegerRef('car', 0, 10)]
 
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global car
         car = str(extras['car'])
+
 
 class BombBatteriesRule(CompoundRule):
     spec = "batteries <batteries>"
     extras = [IntegerRef('batteries', 0, 10)]
 
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global batteries
         batteries = int(str(extras['batteries']))
+
 
 class BombFreakRule(CompoundRule):
     spec = "freak <word>"
     extras = [Dictation('word')]
 
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global freak
         freak = str(extras['word'])
 
+
 class BombParallelRule(CompoundRule):
     spec = "parallel <word>"
-    extras = [
-              Dictation('word'),
-              ]
+    extras = [Dictation('word')]
 
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global parallel
         parallel = str(extras['word'])
 
+
 class BombSerialRule(CompoundRule):
     spec = "serial <word>"
-    extras = [
-              Dictation('word'),
-              ]
+    extras = [Dictation('word')]
 
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global serial
         serial = str(extras['word'])
 
+
 class BombVowelRule(CompoundRule):
     spec = "vowel <word>"
-    extras = [
-              Dictation('word')
-              ]
+    extras = [Dictation('word')]
 
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global vowel
         vowel = str(extras['word'])
 
+
 # Voice command rule combining spoken form and recognition processing.
 class SimpleWiresRule(CompoundRule):
-    spec = "simple wires <wires>"                  # Spoken form of command.
+    spec = "simple wires <wires>"  # Spoken form of command.
     extras = [Dictation("wires")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         spoken = 'need'
         if serial == 'serial':
             spoken += ' last digit of serial'
@@ -431,7 +443,7 @@ class SimpleWiresRule(CompoundRule):
         wire = str(extras['wires'])
         wire = sanitize_colors(wire)
         wire = wire.split()
-        
+
         if len(wire) == 3:
             if 'red' not in wire:
                 engine.speak('cut second wire')
@@ -474,12 +486,12 @@ class SimpleWiresRule(CompoundRule):
             else:
                 engine.speak('cut fourth wire')
 
+
 class ComplexWiresRule(CompoundRule):
-    spec = "complex wires <wires>"                  # Spoken form of command.
+    spec = "complex wires <wires>"  # Spoken form of command.
     extras = [Dictation("wires")]
 
-
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         spoken = 'need'
         if batteries == 99:
             spoken += ' batteries'
@@ -508,10 +520,9 @@ class ComplexWiresRule(CompoundRule):
             int('1101', 2): 'cut' if serial in ('zero', 'two', 'four', 'six', 'eight') else 'dont cut',
             int('1110', 2): 'cut' if parallel in ('true', 'yes') else 'dont cut',
             int('1111', 2): 'dont cut'
-            }
+        }
 
-        bad_words = [('read', 'red'), ('blew', 'blue'), ('start', 'star'),
-        ('white', 'light')]
+        bad_words = [('read', 'red'), ('blew', 'blue'), ('start', 'star'), ('white', 'light')]
         wire = str(extras['wires'])
         print wire
         wires = [wire for wire in wire.split('next')]
@@ -525,8 +536,7 @@ class ComplexWiresRule(CompoundRule):
             for bad, good in bad_words:
                 wire = wire.replace(bad, good)
 
-            wire = [item for item in wire.split() if item in ('red', 'blue', 'light',
-            'star', 'blank')]
+            wire = [item for item in wire.split() if item in ('red', 'blue', 'light', 'star', 'blank')]
 
             print wire
             total = 0
@@ -534,20 +544,21 @@ class ComplexWiresRule(CompoundRule):
                 if letter in wire:
                     total += value
 
-            
             if answer == 'cut nothing':
                 answer = 'cut '
-            
+
             if meaning[total] == 'cut':
-                answer += str(index+1) + ', '
+                answer += str(index + 1) + ', '
 
         engine.speak(answer)
-            # engine.speak(meaning[total])
+        # engine.speak(meaning[total])
+
 
 class MazeRule(CompoundRule):
-    spec = "maze <maze>"                  # Spoken form of command.
+    spec = "maze <maze>"  # Spoken form of command.
     extras = [Dictation("maze")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         maze = str(extras['maze'])
         maze = ' '.join([x for x in maze.split() if x in ['one', 'two','three', 'four', 'five', 'six', 'seven', 'eight', 'nine']])
         print maze
@@ -567,18 +578,20 @@ class MazeRule(CompoundRule):
         maze = get_maze(indicator)
         print maze
         maze_dict = get_maze_dict(maze)
-        letters = {'L': 'left', 'R': 'right', 'D':'down', 'U':'up'}
+        letters = {'L': 'left', 'R': 'right', 'D': 'down', 'U': 'up'}
         path = []
         for letter in traverse_maze(maze_dict, start, finish):
             path.append(letters[letter])
 
-        for path in [path[x:x+3] for x in range(0, len(path), 3)]:
+        for path in [path[x:x + 3] for x in range(0, len(path), 3)]:
             engine.speak(path)
 
+
 class SimonRule(CompoundRule):
-    spec = "simon <words>"                  # Spoken form of command.
+    spec = "simon <words>"  # Spoken form of command.
     extras = [Dictation("words")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         print str(extras['words'])
         if vowel == 'vowel':
             engine.speak("Serial contain vowel?")
@@ -592,28 +605,34 @@ class SimonRule(CompoundRule):
         new_words = []
         print "Your words: {}".format(words)
         if vowel in ('true', 'yes'):
-            colors = {'red': 'blue', 
-                      'blue': 'red',
-                      'green': 'yellow', 
-                      'yellow': 'green'}
+            colors = {
+                'red': 'blue',
+                'blue': 'red',
+                'green': 'yellow',
+                'yellow': 'green'
+            }
             for word in words:
                 new_words.append(colors[word])
         else:
-            colors = {'red': 'blue', 
-                      'blue': 'yellow',
-                      'green': 'green', 
-                      'yellow': 'red'}
+            colors = {
+                'red': 'blue',
+                'blue': 'yellow',
+                'green': 'green',
+                'yellow': 'red'
+            }
             for word in words:
                 new_words.append(colors[word])
-        
+
         new_words = ' '.join(new_words)
         print "My words: {}".format(new_words)
         engine.speak(new_words)
 
+
 class WireSequenceRule(CompoundRule):
-    spec = "wire sequence <words>"                  # Spoken form of command.
+    spec = "wire sequence <words>"  # Spoken form of command.
     extras = [Dictation("words")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global sequences
         words = str(extras['words'])
         print words
@@ -621,7 +640,7 @@ class WireSequenceRule(CompoundRule):
         print words
         words = [word for word in words.split() if word in ('red', 'blue', 'black', 'apple', 'bravo', 'charlie')]
         print words
-        words = [words[x:x+2] for x in xrange(0, len(words), 2)]
+        words = [words[x:x + 2] for x in xrange(0, len(words), 2)]
         print words
         for color, letter in words:
             print "Color: {}".format(color)
@@ -634,18 +653,22 @@ class WireSequenceRule(CompoundRule):
 
             counts[color] += 1
 
+
 class WireSequenceResetRule(CompoundRule):
-    spec = "wire sequence reset"                  # Spoken form of command.
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    spec = "wire sequence reset"  # Spoken form of command.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global counts
         global sequences
-        counts = defaultdict(int) 
+        counts = defaultdict(int)
         sequences = {}
 
+
 class ButtonRule(CompoundRule):
-    spec = "button <words>"                  # Spoken form of command.
+    spec = "button <words>"  # Spoken form of command.
     extras = [Dictation("words")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         spoken = 'need'
         print "Batteries: {}".format(batteries)
         print "Freak: {}".format(freak)
@@ -679,10 +702,12 @@ class ButtonRule(CompoundRule):
         else:
             engine.speak('Press and hold')
 
+
 class ButtonColorRule(CompoundRule):
-    spec = "button color <words>"                  # Spoken form of command.
+    spec = "button color <words>"  # Spoken form of command.
     extras = [Dictation("words")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         words = str(extras['words'])
         print words
         words = words.replace('read', 'red').replace('blew', 'blue')
@@ -694,10 +719,12 @@ class ButtonColorRule(CompoundRule):
         else:
             engine.speak('one')
 
+
 class KnobsRule(CompoundRule):
-    spec = "knobs <words>"                  # Spoken form of command.
+    spec = "knobs <words>"  # Spoken form of command.
     extras = [Dictation("words")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         words = str(extras['words'])
         print words
         words = ''.join([word for word in words.split() if word in ('one', 'zero')])
@@ -715,9 +742,10 @@ class KnobsRule(CompoundRule):
 
 
 class MemoryRule(CompoundRule):
-    spec = "memory <words>"                  # Spoken form of command.
+    spec = "memory <words>"  # Spoken form of command.
     extras = [Dictation("words")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global values
         global positions
         global curr_stage
@@ -727,7 +755,7 @@ class MemoryRule(CompoundRule):
         print words
         if len(words) != 5:
             engine.speak("Try memory again.")
-            return 
+            return
 
         display = words[0]
         stage = words[1:]
@@ -808,8 +836,9 @@ class MemoryRule(CompoundRule):
 
 
 class MemoryResetRule(CompoundRule):
-    spec = "memory reset"                  # Spoken form of command.
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    spec = "memory reset"  # Spoken form of command.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global positions
         global curr_stage
         global values
@@ -817,10 +846,12 @@ class MemoryResetRule(CompoundRule):
         values = []
         curr_stage = 1
 
+
 class MorseRule(CompoundRule):
-    spec = "morse <words>"                  # Spoken form of command.
+    spec = "morse <words>"  # Spoken form of command.
     extras = [Dictation("words")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global morse_letters
         words = str(extras['words'])
 
@@ -837,7 +868,7 @@ class MorseRule(CompoundRule):
             'f': '..-.',
             'g': '--.',
             'h': '....',
-            'i': '..', 
+            'i': '..',
             'k': '-.-',
             'l': '.-..',
             'm': '--',
@@ -886,7 +917,7 @@ class MorseRule(CompoundRule):
         for word in words:
             curr_combo = []
             for num in xrange(len(word)):
-                curr_word = ''.join((word+word)[num:num+3])
+                curr_word = ''.join((word + word)[num:num + 3])
                 combos[curr_word] = word
 
         print code
@@ -901,28 +932,36 @@ class MorseRule(CompoundRule):
                 # print val, key, code, words[val]
                 print words[val]
 
+
 class MorseResetRule(CompoundRule):
-    spec = "morse reset"                  # Spoken form of command.
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    spec = "morse reset"  # Spoken form of command.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global morse_letters
         morse_letters = []
 
+
 class WordsResetRule(CompoundRule):
-    spec = "words reset"                  # Spoken form of command.
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    spec = "words reset"  # Spoken form of command.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global on_first_words
         on_first_words = []
 
+
 class WordsRemoveRule(CompoundRule):
-    spec = "words remove"                  # Spoken form of command.
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    spec = "words remove"  # Spoken form of command.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global on_first_words
         on_first_words = on_first_words[:-1]
 
+
 class SymbolsRule(CompoundRule):
-    spec = "symbols <symbols>"                  # Spoken form of command.
+    spec = "symbols <symbols>"  # Spoken form of command.
     extras = [Dictation("symbols")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         symbols = str(extras['symbols'])
 
         groups = [
@@ -950,10 +989,12 @@ class SymbolsRule(CompoundRule):
 
         engine.speak(answer)
 
+
 class WordsRule(CompoundRule):
-    spec = "words <words>"                  # Spoken form of command.
+    spec = "words <words>"  # Spoken form of command.
     extras = [Dictation("words")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         words = str(extras['words'])
 
         combos = {
@@ -1162,28 +1203,35 @@ class WordsRule(CompoundRule):
                     engine.speak(', '.join(answer))
                 break
 
+
 class PasswordRule(CompoundRule):
-    spec = "password reset"                  # Spoken form of command.
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    spec = "password reset"  # Spoken form of command.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global curr_password
         curr_password = []
 
+
 class PasswordRule(CompoundRule):
-    spec = "password <letters>"                  # Spoken form of command.
+    spec = "password <letters>"  # Spoken form of command.
     extras = [Dictation("letters")]
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         global curr_password
         letters = str(extras['letters'])
         letters = [letter[0].lower() for letter in letters.split()]
         curr_password.append(letters)
         print curr_password
 
-        passwords = ['about',
-        'after', 'again', 'below', 'could', 'every', 'first', 'found', 'great',
-        'house', 'large', 'learn', 'never', 'other', 'place', 'plant', 'point',
-        'right', 'small', 'sound', 'spell', 'still', 'study', 'their', 'there',
-        'these', 'thing', 'think', 'three', 'water', 'where', 'which', 'world',
-        'would', 'write']
+        passwords = [
+            'about', 'after', 'again', 'below', 'could',
+            'every', 'first', 'found', 'great', 'house',
+            'large', 'learn', 'never', 'other', 'place',
+            'plant', 'point', 'right', 'small', 'sound',
+            'spell', 'still', 'study', 'their', 'there',
+            'these', 'thing', 'think', 'three', 'water',
+            'where', 'which', 'world', 'would', 'write'
+        ]
 
         possibles = []
         if len(curr_password) == 2:
@@ -1196,9 +1244,11 @@ class PasswordRule(CompoundRule):
         for word in possibles:
             engine.speak(word)
 
+
 class BombDoneRule(CompoundRule):
-    spec = "bomb done"                  # Spoken form of command.
-    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+    spec = "bomb done"  # Spoken form of command.
+
+    def _process_recognition(self, node, extras):  # Callback when command is spoken.
         engine.speak("I AM YOUR BOMB DEFUSING OVERLORD")
 
         global batteries
@@ -1223,7 +1273,7 @@ class BombDoneRule(CompoundRule):
         vowel = 'vowel'
 
         # Wire sequence
-        counts = defaultdict(int) 
+        counts = defaultdict(int)
 
         # Memory
         values = []
@@ -1236,33 +1286,34 @@ class BombDoneRule(CompoundRule):
         # On First Words
         on_first_words = []
 
+
 # Create a grammar which contains and loads the command rule.
-grammar = Grammar("Keep Talking")                # Create a grammar to contain the command rule.
-grammar.add_rule(BombBatteriesRule())                     # Add the command rule to the grammar.
-grammar.add_rule(BombVowelRule())                     # Add the command rule to the grammar.
-grammar.add_rule(BombParallelRule())                     # Add the command rule to the grammar.
-grammar.add_rule(BombSerialRule())                     # Add the command rule to the grammar.
-grammar.add_rule(BombFreakRule())                     # Add the command rule to the grammar.
-grammar.add_rule(BombCarRule())                     # Add the command rule to the grammar.
-grammar.add_rule(BombResetRule())                     # Add the command rule to the grammar.
-grammar.add_rule(BombStatusRule())                     # Add the command rule to the grammar.
-grammar.add_rule(SimpleWiresRule())                     # Add the command rule to the grammar.
-grammar.add_rule(ComplexWiresRule())                     # Add the command rule to the grammar.
-grammar.add_rule(MazeRule())                     # Add the command rule to the grammar.
-grammar.add_rule(SimonRule())                     # Add the command rule to the grammar.
-grammar.add_rule(WireSequenceRule())                     # Add the command rule to the grammar.
-grammar.add_rule(WireSequenceResetRule())                     # Add the command rule to the grammar.
-grammar.add_rule(ButtonRule())                     # Add the command rule to the grammar.
-grammar.add_rule(ButtonColorRule())                     # Add the command rule to the grammar.
-grammar.add_rule(KnobsRule())                     # Add the command rule to the grammar.
-grammar.add_rule(MemoryRule())                     # Add the command rule to the grammar.
-grammar.add_rule(MemoryResetRule())                     # Add the command rule to the grammar.
-grammar.add_rule(MorseRule())                     # Add the command rule to the grammar.
-grammar.add_rule(MorseResetRule())                     # Add the command rule to the grammar.
-grammar.add_rule(SymbolsRule())                     # Add the command rule to the grammar.
-grammar.add_rule(WordsRule())                     # Add the command rule to the grammar.
-grammar.add_rule(WordsResetRule())                     # Add the command rule to the grammar.
-grammar.add_rule(WordsRemoveRule())                     # Add the command rule to the grammar.
-grammar.add_rule(PasswordRule())                     # Add the command rule to the grammar.
+grammar = Grammar("Keep Talking")
+grammar.add_rule(BombBatteriesRule())
+grammar.add_rule(BombVowelRule())
+grammar.add_rule(BombParallelRule())
+grammar.add_rule(BombSerialRule())
+grammar.add_rule(BombFreakRule())
+grammar.add_rule(BombCarRule())
+grammar.add_rule(BombResetRule())
+grammar.add_rule(BombStatusRule())
+grammar.add_rule(SimpleWiresRule())
+grammar.add_rule(ComplexWiresRule())
+grammar.add_rule(MazeRule())
+grammar.add_rule(SimonRule())
+grammar.add_rule(WireSequenceRule())
+grammar.add_rule(WireSequenceResetRule())
+grammar.add_rule(ButtonRule())
+grammar.add_rule(ButtonColorRule())
+grammar.add_rule(KnobsRule())
+grammar.add_rule(MemoryRule())
+grammar.add_rule(MemoryResetRule())
+grammar.add_rule(MorseRule())
+grammar.add_rule(MorseResetRule())
+grammar.add_rule(SymbolsRule())
+grammar.add_rule(WordsRule())
+grammar.add_rule(WordsResetRule())
+grammar.add_rule(WordsRemoveRule())
+grammar.add_rule(PasswordRule())
 grammar.add_rule(BombDoneRule())
 grammar.load()
