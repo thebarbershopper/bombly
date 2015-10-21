@@ -25,18 +25,19 @@ def sanitize_colors(words):
 
 
 def reset_bomb():
+    # TODO reimplement reset
     global batteries
     global freak
     global car
     global parallel
     global serial
     global vowel
-    global counts
-    global values
-    global positions
-    global curr_stage
-    global morse_letters
-    global on_first_words
+    # global counts
+    # global values
+    # global positions
+    # global curr_stage
+    # global morse_letters
+    # global on_first_words
 
     # Battery characteristics
     batteries = 99
@@ -46,34 +47,35 @@ def reset_bomb():
     serial = 'serial'
     vowel = 'vowel'
 
-    # Wire sequence
-    counts = defaultdict(int)
-
-    # Memory
-    values = []
-    positions = []
-    curr_stage = 1
-
-    # Morse
-    morse_letters = []
-
-    # On First Words
-    on_first_words = []
+    # # Wire sequence
+    # counts = defaultdict(int)
+    #
+    # # Memory
+    # values = []
+    # positions = []
+    # curr_stage = 1
+    #
+    # # Morse
+    # morse_letters = []
+    #
+    # # On First Words
+    # on_first_words = []
 
 
 def bomb_status():
+    # TODO reimplement status
     global batteries
     global freak
     global car
     global parallel
     global serial
     global vowel
-    global counts
-    global values
-    global positions
-    global curr_stage
-    global morse_letters
-    global on_first_words
+    # global counts
+    # global values
+    # global positions
+    # global curr_stage
+    # global morse_letters
+    # global on_first_words
 
     # Battery characteristics
     print 'batteries', batteries
@@ -83,19 +85,19 @@ def bomb_status():
     print 'serial', serial
     print 'vowel', vowel
 
-    # Wire sequence
-    print 'wire sequence', counts
-
-    # Memory
-    print 'values', values
-    print 'position', positions
-    print 'curr_stage', curr_stage
-
-    # Morse
-    print 'morse_letters', morse_letters
-
-    # On First Words
-    print 'on first words', on_first_words
+    # # Wire sequence
+    # print 'wire sequence', counts
+    #
+    # # Memory
+    # print 'values', values
+    # print 'position', positions
+    # print 'curr_stage', curr_stage
+    #
+    # # Morse
+    # print 'morse_letters', morse_letters
+    #
+    # # On First Words
+    # print 'on first words', on_first_words
 
 
 def set_car(extras):
@@ -129,40 +131,5 @@ def set_vowel(extras):
 
 
 def bomb_done():
-
-    global batteries
-    global freak
-    global car
-    global parallel
-    global serial
-    global vowel
-    global counts
-    global values
-    global positions
-    global curr_stage
-    global morse_letters
-    global on_first_words
-
-    # Battery characteristics
-    batteries = 99
-    freak = 'freak'
-    car = 'car'
-    parallel = 'parallel'
-    serial = 'serial'
-    vowel = 'vowel'
-
-    # Wire sequence
-    counts = defaultdict(int)
-
-    # Memory
-    values = []
-    positions = []
-    curr_stage = 1
-
-    # Morse
-    morse_letters = []
-
-    # On First Words
-    on_first_words = []
-
+    reset_bomb()
     return 'I AM YOUR BOMB DEFUSING OVERLORD'
