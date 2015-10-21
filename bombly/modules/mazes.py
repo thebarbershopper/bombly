@@ -207,5 +207,8 @@ def solve_maze(extras):
     for letter in traverse_maze(maze_dict, start, finish):
         path.append(letters[letter])
 
+    answer = []
     for path in [path[x:x + 3] for x in range(0, len(path), 3)]:
-        return path
+        answer.append(path)
+
+    return answer

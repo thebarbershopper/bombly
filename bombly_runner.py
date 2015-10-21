@@ -106,7 +106,8 @@ class MazeRule(CompoundRule):
     def _process_recognition(self, node, extras):
         from bombly.modules.mazes import solve_maze
         speak = solve_maze(extras)
-        engine.speak(speak)
+        for item in speak:
+            engine.speak(item)
 
 
 class SimonRule(CompoundRule):
