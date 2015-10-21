@@ -1048,7 +1048,7 @@ class WordsRule(CompoundRule):
             ('five', 'letters'): 'uh huh',
             ('hotel', 'uniform', 'hotel'): 'uh huh',
             ('four', 'letters'): 'uh uh',
-            ('uniform', 'hotle'): 'uh uh',
+            ('uniform', 'hotel'): 'uh uh',
             ('what', 'mark'): 'what?',
             ('done',): 'done',
             ('next',): 'next',
