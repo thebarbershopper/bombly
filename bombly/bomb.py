@@ -25,21 +25,16 @@ def sanitize_colors(words):
 
 
 def reset_bomb():
-    # TODO reimplement reset
     global batteries
     global freak
     global car
     global parallel
     global serial
     global vowel
-    # global counts
-    # global values
-    # global positions
-    # global curr_stage
-    # global morse_letters
-    # global on_first_words
 
-    # Battery characteristics
+    from .modules import wire_sequences, morse_code, whos_on_first, memory
+
+    # Bomb
     batteries = 99
     freak = 'freak'
     car = 'car'
@@ -47,35 +42,33 @@ def reset_bomb():
     serial = 'serial'
     vowel = 'vowel'
 
-    # # Wire sequence
-    # counts = defaultdict(int)
-    #
-    # # Memory
-    # values = []
-    # positions = []
-    # curr_stage = 1
-    #
-    # # Morse
-    # morse_letters = []
-    #
-    # # On First Words
-    # on_first_words = []
+    # Wire sequence
+    wire_sequences.counts = defaultdict(int)
+
+    # Memory
+    memory.values = []
+    memory.positions = []
+    memory.curr_stage = 1
+
+    # Morse
+    morse_code.morse_letters = []
+
+    # On First Words
+    whos_on_first.on_first_words = []
 
 
 def bomb_status():
-    # TODO reimplement status
     global batteries
     global freak
     global car
     global parallel
     global serial
     global vowel
-    # global counts
-    # global values
-    # global positions
-    # global curr_stage
-    # global morse_letters
-    # global on_first_words
+
+    from .modules.wire_sequences import counts
+    from .modules.morse_code import morse_letters
+    from .modules.whos_on_first import on_first_words
+    from .modules.memory import curr_stage, positions, values
 
     # Battery characteristics
     print 'batteries', batteries
@@ -85,19 +78,19 @@ def bomb_status():
     print 'serial', serial
     print 'vowel', vowel
 
-    # # Wire sequence
-    # print 'wire sequence', counts
-    #
-    # # Memory
-    # print 'values', values
-    # print 'position', positions
-    # print 'curr_stage', curr_stage
-    #
-    # # Morse
-    # print 'morse_letters', morse_letters
-    #
-    # # On First Words
-    # print 'on first words', on_first_words
+    # Wire sequence
+    print 'wire sequence', counts
+
+    # Memory
+    print 'values', values
+    print 'position', positions
+    print 'curr_stage', curr_stage
+
+    # Morse
+    print 'morse_letters', morse_letters
+
+    # On First Words
+    print 'on first words', on_first_words
 
 
 def set_car(extras):
